@@ -2,6 +2,7 @@ let canvas = document.getElementById("snake");
 let context = canvas.getContext("2d");
 let box = 32;
 let snake = [];
+let score = 0;
 
 snake[0] = {
 
@@ -32,6 +33,7 @@ function drawFood() {
 }
 
 document.addEventListener('keydown', update);
+pontos = document.querySelector('.score');
 
 function update(event) {
     if (event.keyCode == 37 && direction != "right") direction = "left";
@@ -74,6 +76,7 @@ function iniciarJogo() {
     else{
         food.x = Math.floor(Math.random() * 15 + 1) * box;
         food.y = Math.floor(Math.random() * 15 + 1) * box;
+        score +=10;
     }
    
 
@@ -83,6 +86,8 @@ function iniciarJogo() {
     }
 
     snake.unshift(newHead);
+
+    pontos.textContent = "Score: " + score;
 }
 
 let jogo = setInterval(iniciarJogo, 100);
